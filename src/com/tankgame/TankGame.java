@@ -18,7 +18,7 @@ public class TankGame extends JFrame {
     }
 
     public TankGame() {
-        System.out.println("Please input selection 1：New game 2：Contineous");
+        System.out.println("Please input selection 1：New game 2：Continue");
         String key = scanner.next();
         mp = new MyPanel(key);
         Thread thread = new Thread(mp);

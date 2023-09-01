@@ -71,11 +71,11 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
                 System.out.println("Wrong input");
         }
 
-        image1 = Toolkit.getDefaultToolkit().getImage(MyPanel.class.getResource("../com/image/bomb3.gif"));
-        image2 = Toolkit.getDefaultToolkit().getImage(MyPanel.class.getResource("../com/image/bomb2.gif"));
-        image3 = Toolkit.getDefaultToolkit().getImage(MyPanel.class.getResource("../com/image/bomb1.gif"));
+        image1 = Toolkit.getDefaultToolkit().getImage(MyPanel.class.getResource("bomb3.gif"));
+        image2 = Toolkit.getDefaultToolkit().getImage(MyPanel.class.getResource("bomb2.gif"));
+        image3 = Toolkit.getDefaultToolkit().getImage(MyPanel.class.getResource("bomb1.gif"));
         //Playing music
-        new PlayAudio("../com/111.wav").start();
+        new PlayAudio("111.wav").start();
     }
 
     //Writing method, display our tank destroyed enemy tank information, import the brush tool

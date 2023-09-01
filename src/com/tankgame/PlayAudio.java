@@ -2,6 +2,7 @@ package com.tankgame;
 
 import javax.sound.sampled.*;
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -16,17 +17,19 @@ public class PlayAudio extends Thread {
 
     private String filename;
 
-    public PlayAudio(String wavfile) {//构造器,指定文件
-        String path = System.getProperty("user.dir");
-        filename = path+"\\"+wavfile;
+    public PlayAudio(String wavfile) {
+        filename = wavfile;
     }
 
     @Override
     public void run() {
-        // 从项目资源目录下加载背景音乐
+        String audioDirectory = "D:\\Javacode\\Chapter18\\src\\com\\111.wav";
+        System.setProperty("user.dir", audioDirectory);
+        File soundFile = new File(filename);
+        //Load background music from the project resources directory
         AudioInputStream audioInputStream = null;
         try {
-            audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(new FileInputStream(filename)));
+            audioInputStream = AudioSystem.getAudioInputStream(soundFile);
         } catch (Exception e1) {
             e1.printStackTrace();
             return;
@@ -46,7 +49,6 @@ public class PlayAudio extends Thread {
 
         auline.start();
         int nBytesRead = 0;
-        //缓存
         byte[] abData = new byte[512];
 
         try {

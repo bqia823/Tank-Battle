@@ -15,16 +15,11 @@ public class Recorder {
     private static int allEnemyTankTotal = 0;
     private static BufferedWriter bufferedWriter = null;
     private static BufferedReader bufferedReader = null;
-    private static String recordFile = "../com/MyRecord.txt";
+    private static String recordFile = "MyRecord.txt";
     private static Vector<EnemyTank> enemyTanks = null;
 
     //Define a node Vector that holds information about enemy nodes
     private static Vector<Node> nodes = new Vector<>();
-
-    static {
-        String parentPath = System.getProperty("user.dir");
-        recordFile = parentPath + "d:\\record.txt";
-    }
 
     /**
      * This method is called when the previous office continues
