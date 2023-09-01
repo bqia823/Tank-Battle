@@ -1,0 +1,3 @@
+WASD up down left right
+J shot
+P pause
