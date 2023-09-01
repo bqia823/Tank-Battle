@@ -6,11 +6,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * @author ajun
- * Date 2021/7/16
- * @version 1.0
- * 播放音乐
+ * @author Sarah Qiao
+ * @date 2021/2/10
+ * @version 1.5
+ * Playing music
  */
+
 public class PlayAudio extends Thread {
 
     private String filename;

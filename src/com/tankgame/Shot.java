@@ -1,13 +1,17 @@
 package com.tankgame;
-
-//发射行为做成一个线程
+/**
+ * @author Sarah Qiao
+ * @version 1.5
+ * @date 2021/2/10
+ * @Package : tankgame
+ */
 public class Shot implements Runnable {
-    //记录子弹横纵坐标,方向和速度
     private int x;
     private int y;
     private int direct = 0;
     private int speed = 2;
-    //设定一个布尔值判断子弹是否还存在(碰到边缘或敌人则子弹被销毁)
+    //Set a Boolean value to determine if the bullet still
+    //exists (the bullet is destroyed if it hits an edge or an enemy)
     private boolean isLive = true;
 
     public int getX() {
@@ -42,9 +46,6 @@ public class Shot implements Runnable {
         isLive = live;
     }
 
-
-    //构造器
-
     public Shot(int x, int y, int direct) {
         this.x = x;
         this.y = y;
@@ -53,15 +54,14 @@ public class Shot implements Runnable {
 
 
     @Override
-    public void run() {//射击
+    public void run() {
         while (true) {
-            //需要子弹休眠以呈现动画效果
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            //根据方向改变x和y的值
+            //Changing the values of x and y depending on the direction
             switch (direct){
                 case 0://上
                     y -= speed;
@@ -76,16 +76,16 @@ public class Shot implements Runnable {
                     x -= speed;
                     break;
             }
-            //这里在不考虑敌人的情况下，子弹在碰到边界以后会被销毁。
-            //边界按照面板的长宽来决定
-            //设定好面板范围后取反
-            //同时当子弹碰到敌方坦克后线程也会结束
+
+            /*
+            Here, regardless of the enemy, the bullet will be destroyed when it hits the border.
+            The boundary is determined by the length and width of the panel. Set the panel range
+            and reverse it. The thread also ends when the bullet hits an enemy tank
+            */
             if(!(x >= 0 && x <= 1000 && y >= 0 && y <= 750 && isLive)){
-                //子弹被销毁
                 isLive = false;
                 break;
             }
-
         }
     }
 }

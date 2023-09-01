@@ -1,9 +1,14 @@
 package com.tankgame;
 
 /**
+ * @author Sarah Qiao
+ * @version 1.5
+ * @date 2021/2/10
+ * @Package : tankgame
  * @Classname Node
- * @Description 一个node 对象，表示一个敌人坦克的信息
- */
+ * @Description A node object that represents information about an enemy tank
+ **/
+
 public class Node {
     private int x;
     private int y;

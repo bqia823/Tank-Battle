@@ -1,8 +1,13 @@
 package com.tankgame;
 
 import java.util.Vector;
-
-//敌人的坦克
+/**
+ * @author Sarah Qiao
+ * @version 1.5
+ * @date 2021/2/10
+ * @Package : tankgame
+ */
+//Enemy tanks
 public class EnemyTank extends Tank implements Runnable {
     //Using Vector to create a new property
     Vector<Shot> shots = new Vector<>();

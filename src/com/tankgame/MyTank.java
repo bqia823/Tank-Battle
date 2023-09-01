@@ -1,29 +1,30 @@
 package com.tankgame;
 
 import java.util.Vector;
-
-//设置自己的坦克
+/**
+ * @author Sarah Qiao
+ * @version 1.5
+ * @date 2021/2/10
+ * @Package : tankgame
+ **/
 public class MyTank extends Tank {
     public MyTank(int x, int y) {
         super(x, y);
     }
 
-    //因为射击行为由我方坦克实行，所以在这里创建一个shot对象
-    //表示一个设计行为(线程)
+    //Since the shooting action is performed by our tank
+    //Creating a shot object here represents a design action (thread).
     Shot shot = null;
-    //可以发射多颗子弹
     Vector<Shot> shots = new Vector<>();
 
-    //创建射击方法，子弹出发点根据我方坦克当前位置决定
+    //Create the firing method, the starting point of the bullet is determined by the current position of our tank
     public void ShotEnemyTank() {
-        //要求一次最多发射5颗子弹
+        //A maximum of five bullets are required to be fired at a time
         if (shots.size() >= 5) {
-            //直接返回，不再创建新子弹
             return;
         }
 
-        switch (getDirect()) {//得到我方坦克的方向
-            //子弹从炮筒口位置出现
+        switch (getDirect()) {
             case 0:
                 shot = new Shot(getX() + 20, getY(), 0);
                 break;
@@ -37,9 +38,7 @@ public class MyTank extends Tank {
                 shot = new Shot(getX(), getY() + 20, 3);
                 break;
         }
-        //将新创建的shots放到集合中
         shots.add(shot);
-        //启动射击线程
         new Thread(shot).start();
     }
 

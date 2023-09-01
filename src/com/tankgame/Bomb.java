@@ -1,5 +1,10 @@
 package com.tankgame;
-
+/**
+ * @author Sarah Qiao
+ * @version 1.5
+ * @date 2021/2/10
+ * @Package : tankgame
+ */
 //Making tank explosion effect
 public class Bomb {
     //Setting the coordinates and life cycle of the explosion

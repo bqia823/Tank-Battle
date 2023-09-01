@@ -4,21 +4,21 @@ import java.io.*;
 import java.util.Vector;
 
 /**
+ * @author Sarah Qiao
+ * @version 1.5
+ * @date 2021/2/10
+ * @Package : tankgame
  * @Classname Recorder
- * @Description 用于记录
+ * @Description Recording related information and interact with files
  */
 public class Recorder {
-    //定义变量，记录我方击毁敌人坦克数量
     private static int allEnemyTankTotal = 0;
-    //定义IO对象,准备写数据到文件中
     private static BufferedWriter bufferedWriter = null;
     private static BufferedReader bufferedReader = null;
-    //保存文件到src比较好，这样方便实现文件拷贝
-    private static String recordFile = "src\\myRecord.txt";
-    //定义向量指向myPanel中敌人坦克的向量
+    private static String recordFile = "../com/MyRecord.txt";
     private static Vector<EnemyTank> enemyTanks = null;
 
-    //定义一个Node 的Vector ，用于保存敌人的信息node
+    //Define a node Vector that holds information about enemy nodes
     private static Vector<Node> nodes = new Vector<>();
 
     static {
@@ -27,23 +27,22 @@ public class Recorder {
     }
 
     /**
-     * 该方法在继续上局时调用
-     * 用于读取record.txt 文件，恢复相关信息
-     * @return 敌人坦克信息
+     * This method is called when the previous office continues
+     * Used to read the record.txt file and recover related information
+     * @return enemy tank information
      */
     public static Vector<Node> getNodesAndTanks() {
         try {
             bufferedReader = new BufferedReader(new FileReader(recordFile));
-            //击毁数量
+            //Destroyed quantity
             allEnemyTankTotal = Integer.parseInt(bufferedReader.readLine());
-            //获取敌人坦克信息
             String dataLine = "";
             while ((dataLine = bufferedReader.readLine()) != null) {
                 String[] split = dataLine.split(" ");
                 if (split.length == 3) {
                     Node node = new Node(Integer.parseInt(split[0]),
                             Integer.parseInt(split[1]), Integer.parseInt(split[2]));
-                    nodes.add(node);//放入nodes Vector
+                    nodes.add(node);
                 }
             }
         } catch (Exception e) {
@@ -74,7 +73,7 @@ public class Recorder {
     }
 
     /**
-     * 当我方坦克击毁一辆敌人坦克，就应当对这个值++
+     * When our tank destroys an enemy tank, ++ should be applied to this value
      */
     public static void addAllEnemyTankNum() {
 
@@ -88,14 +87,11 @@ public class Recorder {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter(recordFile));
             bufferedWriter.write(allEnemyTankTotal + "\r\n");
-            //变量敌人坦克集合，然后根据情况保存
-            //OOP 编程思想，定义一个属性，通过SET 方法得到敌人的坦克集合
+            //Variable enemy tank collection, then save depending on the situation
             if (enemyTanks.size() > 0) {
                 for (int i = 0; i < enemyTanks.size(); i++) {
                     EnemyTank enemyTank = enemyTanks.get(i);
-                    //为了保险，判断一下是否存活
                     if (enemyTank.isLive()) {
-                        //保存enemy坦克信息
                         String record = enemyTank.getX() + " " + enemyTank.getY() + " " + enemyTank.getDirect();
                         bufferedWriter.write(record);
                         bufferedWriter.newLine();

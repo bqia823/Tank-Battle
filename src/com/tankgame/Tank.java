@@ -1,13 +1,20 @@
 package com.tankgame;
+/**
+ * @author Sarah Qiao
+ * @version 1.5
+ * @date 2021/2/10
+ * @Package : tankgame
+ */
 
 public class Tank {
-    private int x;//横坐标
-    private int y;//纵坐标
-    //坦克的方向(上下左右0123)，在写程序的过程中发现这个需要被设置成变量以简化代码
+    private int x;
+    private int y;
     private int direct;
-    //编写可以被调用的方法，实现上下左右移动
-    //因为方向这个属性为私有，在MyPanel中调用就会比较麻烦，所以直接在这里编写方法封装
-    //新属性控制坦克移动速度
+    /*
+    Writing methods that can be called to move up, down, left and right
+    Because the direction property is private, calling it in MyPanel is cumbersome, so write the method wrapper directly here
+    New attribute controls tank movement speed
+    */
     private int speed = 1;
     private boolean isLive = true;
 
@@ -24,16 +31,19 @@ public class Tank {
         isLive = live;
     }
 
-    public void moveUp(){
+    public void moveUp() {
         y -= speed;
     }
-    public void moveRight(){
+
+    public void moveRight() {
         x += speed;
     }
-    public void moveLeft(){
+
+    public void moveLeft() {
         x -= speed;
     }
-    public void moveDown(){
+
+    public void moveDown() {
         y += speed;
     }
 
@@ -72,9 +82,5 @@ public class Tank {
 
     public void setSpeed(int speed) {
         this.speed = speed;
-    }
-
-    public static void main(String[] args) {
-
     }
 }
